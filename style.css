@@ -233,6 +233,14 @@ body:hover .cursor-glow {
   width: 100%;
 }
 
+.nav__link--active {
+  color: var(--text);
+}
+
+.nav__link--active::after {
+  width: 100%;
+}
+
 /* Hamburger */
 .nav__toggle {
   display: none;
@@ -424,51 +432,7 @@ body:hover .cursor-glow {
   }
 }
 
-/* Scroll Indicator */
-.hero__scroll {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .5rem;
-  font-size: .7rem;
-  font-weight: 500;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
 
-.hero__scroll-line {
-  width: 1px;
-  height: 40px;
-  background: var(--border);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero__scroll-line::after {
-  content: '';
-  position: absolute;
-  top: -100%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--accent);
-  animation: scrollLine 1.8s var(--ease) infinite;
-}
-
-@keyframes scrollLine {
-  0% {
-    top: -100%;
-  }
-
-  100% {
-    top: 100%;
-  }
-}
 
 /* ================================================
    BUTTONS
@@ -722,26 +686,7 @@ body:hover .cursor-glow {
   position: relative;
 }
 
-.project-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity var(--dur) var(--ease);
-}
 
-.project-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  border-color: var(--accent);
-  box-shadow: 0 16px 48px rgba(74, 222, 128, 0.15),
-              0 8px 24px rgba(0, 0, 0, 0.3);
-}
-
-.project-card:hover::before {
-  opacity: 1;
-}
 
 .project-card::before {
   content: '';
@@ -880,7 +825,7 @@ body:hover .cursor-glow {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(232, 180, 90, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(74, 222, 128, 0.3), transparent);
   opacity: 0;
   transition: opacity var(--dur) var(--ease);
 }

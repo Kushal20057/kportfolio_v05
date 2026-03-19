@@ -26,11 +26,8 @@
 
   // --- Navbar scroll state ---
   const nav = document.getElementById('nav');
-  let lastScroll = 0;
   window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    nav.classList.toggle('nav--scrolled', y > 40);
-    lastScroll = y;
+    nav.classList.toggle('nav--scrolled', window.scrollY > 40);
   }, { passive: true });
 
   // --- Mobile Menu ---
