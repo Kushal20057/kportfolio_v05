@@ -192,7 +192,7 @@ body:hover .cursor-glow {
   backdrop-filter: blur(10px);
   border-left: 1px solid var(--border);
   border-right: 1px solid var(--border);
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(39, 39, 42, 0.1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(39, 39, 42, 0.05);
 }
 
 .nav__logo {
@@ -383,7 +383,7 @@ body:hover .cursor-glow {
   overflow: hidden;
   border: 2px solid var(--border);
   position: relative;
-  animation: float 6s ease-in-out infinite;
+  animation: float 7s ease-in-out infinite;
 }
 
 .hero__image-wrapper::before {
@@ -393,7 +393,7 @@ body:hover .cursor-glow {
   border-radius: 50%;
   background: conic-gradient(var(--accent), transparent, var(--accent));
   z-index: -1;
-  animation: rotate 8s linear infinite;
+  animation: rotate 10s linear infinite;
 }
 
 .hero__image {
@@ -524,9 +524,9 @@ body:hover .cursor-glow {
 }
 
 .btn--primary:hover {
-  background: #22c55e;
+  background-position: 100% 100%;
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px var(--accent-dim);
+  box-shadow: 0 8px 30px rgba(34, 197, 94, 0.4);
 }
 
 .btn--ghost {
@@ -596,37 +596,85 @@ body:hover .cursor-glow {
 .about__stats {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  padding: 2rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  gap: 1.25rem;
 }
 
-.stat {
-  text-align: center;
+.stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1rem 1.75rem;
+  background: rgba(74, 222, 128, 0.04);
+  border: 1.5px solid var(--accent-dim);
+  border-radius: 100px;
+  transition: all var(--dur) var(--ease);
+  position: relative;
+  overflow: hidden;
 }
 
-.stat__number {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--accent);
-  display: inline;
+.stat-pill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.06) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
 }
 
-.stat__suffix {
+.stat-pill:hover {
+  border-color: var(--accent);
+  transform: translateX(6px);
+  box-shadow: 0 4px 24px rgba(74, 222, 128, 0.12);
+}
+
+.stat-pill:hover::before {
+  opacity: 1;
+}
+
+.stat-pill__icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--bg);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+.stat-pill:hover .stat-pill__icon {
+  transform: scale(1.08);
+  box-shadow: 0 0 16px rgba(74, 222, 128, 0.4);
+}
+
+.stat-pill__value {
+  display: flex;
+  align-items: baseline;
+  flex-shrink: 0;
+}
+
+.stat-pill__number {
   font-size: 1.75rem;
-  font-weight: 700;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.stat-pill__suffix {
+  font-size: 1.25rem;
+  font-weight: 800;
   color: var(--accent);
 }
 
-.stat__label {
-  display: block;
-  font-size: .8rem;
-  color: var(--text-muted);
-  margin-top: .25rem;
+.stat-pill__label {
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--text);
   text-transform: uppercase;
-  letter-spacing: .08em;
+  letter-spacing: .1em;
 }
 
 /* ================================================
@@ -642,14 +690,35 @@ body:hover .cursor-glow {
   gap: 2rem;
 }
 
+.work__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.work-page {
+  min-height: 100vh;
+  padding-top: 120px;
+}
+
+.work-page__subtitle {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin-top: .5rem;
+  margin-bottom: 3rem;
+}
+
 .project-card {
   background: linear-gradient(135deg, rgba(28, 28, 31, 0.7) 0%, rgba(17, 17, 19, 0.7) 100%);
-  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   border: 1px solid var(--border);
   border-radius: 16px;
   overflow: hidden;
-  transition: all var(--dur) var(--ease);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              border-color 0.3s ease, 
+              box-shadow 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background-color 0.3s ease;
   position: relative;
 }
 
@@ -664,9 +733,32 @@ body:hover .cursor-glow {
 }
 
 .project-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px) scale(1.02);
   border-color: var(--accent);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 16px 48px rgba(74, 222, 128, 0.15),
+              0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(74, 222, 128, 0.4), transparent);
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.project-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
 }
 
 .project-card:hover::before {
@@ -688,6 +780,22 @@ body:hover .cursor-glow {
 
 .project-card__preview--accent {
   background: linear-gradient(135deg, #2e1a1a 0%, #3e2116 50%, #60340f 100%);
+}
+
+.project-card__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.project-card:hover .project-card__image {
+  opacity: 0.85;
+  transform: scale(1.05);
 }
 
 .project-card__tags {
@@ -1006,6 +1114,10 @@ a.contact__card-value:hover {
     gap: 2.5rem;
   }
 
+  .hero__visual {
+    order: -1;
+  }
+
   .hero__cta {
     justify-content: center;
   }
@@ -1020,10 +1132,8 @@ a.contact__card-value:hover {
     gap: 2rem;
   }
 
-  .about__stats {
-    flex-direction: row;
-    justify-content: center;
-    gap: 2.5rem;
+  .stat-pill {
+    padding: 0.85rem 1.25rem;
   }
 
   .skills__grid {
@@ -1049,9 +1159,26 @@ a.contact__card-value:hover {
     display: none;
   }
 
-  .about__stats {
-    flex-direction: column;
-    gap: 1.5rem;
+  .stat-pill {
+    padding: 0.75rem 1rem;
+    gap: 0.85rem;
+  }
+
+  .stat-pill__icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .stat-pill__number {
+    font-size: 1.35rem;
+  }
+
+  .stat-pill__suffix {
+    font-size: 1rem;
+  }
+
+  .stat-pill__label {
+    font-size: .75rem;
   }
 
   .work__grid {

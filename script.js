@@ -68,7 +68,7 @@
   reveals.forEach((el) => revealObserver.observe(el));
 
   // --- Stat Counter Animation ---
-  const statNumbers = document.querySelectorAll('.stat__number[data-count]');
+  const statNumbers = document.querySelectorAll('.stat-pill__number[data-count]');
   const counterObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
