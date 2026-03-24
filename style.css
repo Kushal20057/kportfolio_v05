@@ -747,6 +747,8 @@ body:hover .cursor-glow {
   display: flex;
   gap: .5rem;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
 }
 
 .tag {
@@ -1087,6 +1089,12 @@ a.contact__card-value:hover {
 
   .contact__grid {
     grid-template-columns: 1fr;
+  }
+
+  /* Remove colored overlay from projects in mobile view */
+  .project-card__image,
+  .project-card:hover .project-card__image {
+    opacity: 1;
   }
 }
 
